@@ -26,8 +26,14 @@ function App(): JSX.Element {
   const [diceValue, setDiceValue] = useState(() => getDiceValue());
   const diceMap = diceFaces.get(diceValue);
 
-  function onTouchChangeDice() {
+  function rotateDice() {
     setDiceValue(() => getDiceValue());
+  }
+  function onTouchChangeDice() {
+    const rollingDices = setInterval(rotateDice, 100);
+    setTimeout(() => {
+      clearInterval(rollingDices);
+    }, 1100);
   }
   return (
     <SafeAreaView
